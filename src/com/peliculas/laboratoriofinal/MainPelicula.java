@@ -2,6 +2,7 @@ package com.peliculas.laboratoriofinal;
 
 import com.peliculas.negocio.CatalogoPeliculasImpl;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /*Esta clase contiene el manu que permite al usuario seleccionar la accion a ejecutar sobre el catalago de peliculas*/
@@ -10,7 +11,7 @@ public class MainPelicula {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int opcion;
-        String nombreArchivo;
+        String nombreArchivo = "peliculas.txt";
         CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
 
         System.out.println("Bienvenido al catalogo de peliculas:");
@@ -24,11 +25,13 @@ public class MainPelicula {
             opcion = entrada.nextInt();
         } while (opcion > 4 || opcion < 0);
 
-        switch (opcion){
+        switch (opcion) {
+            case 1:
+                catalogo.iniciarArchivo(nombreArchivo);
+                break;
 
-            case 1: catalogo.iniciarArchivo("pelicula/txt");
-
-
+            case 2:
+                /*catalogo.agregar();*/
         }
     }
 }

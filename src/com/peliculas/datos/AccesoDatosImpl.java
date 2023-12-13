@@ -1,8 +1,11 @@
 package com.peliculas.datos;
 
 import com.peliculas.dominio.Pelicula;
+import com.peliculas.excepciones.AccesoDatosEx;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class AccesoDatosImpl implements AccesoDatos{
@@ -28,7 +31,15 @@ public class AccesoDatosImpl implements AccesoDatos{
 
     @Override
     public void crear(String nombreArchivo) {
-        /*File archivo = new File();*/
+        File archivo = new File(nombreArchivo);
+        try {
+            PrintWriter salida = new PrintWriter(archivo);
+            salida.close();
+            System.out.println("Se ha creado el archivo correctamente.");
+        } catch (FileNotFoundException e) {
+            throw new AccesoDatosEx();
+        }
+
     }
 
     @Override
