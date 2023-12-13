@@ -2,6 +2,7 @@ package com.peliculas.datos;
 
 import com.peliculas.dominio.Pelicula;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface AccesoDatos {
 
     String buscar(String nombreArchivo, String buscar);
 
-    void crear(String nombreArchivo);
+    void crear(String nombreArchivo) throws FileNotFoundException;
 
     void borrar(String nombreArchivo);
 }
