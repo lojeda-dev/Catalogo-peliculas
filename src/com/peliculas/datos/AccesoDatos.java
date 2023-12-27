@@ -19,4 +19,6 @@ public interface AccesoDatos {
     void crear(String nombreArchivo) throws FileNotFoundException;
 
     void borrar(String nombreArchivo);
+
+    void borrar(String nombreArchivo,String nombrePelicula);
 }
