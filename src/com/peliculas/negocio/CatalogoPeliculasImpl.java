@@ -4,6 +4,8 @@ import com.peliculas.datos.AccesoDatosImpl;
 import com.peliculas.dominio.Pelicula;
 import lombok.NoArgsConstructor;
 
+import java.io.FileNotFoundException;
+
 /*Contiene las implementaciones de las operaciones necesarias de la aplicacion Catalogo Peliculas*/
 
 @NoArgsConstructor
@@ -13,11 +15,12 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
     @Override
     public void agregar(String nombrePelicula, String nombreArchivo) {
         Pelicula pelicula = new Pelicula(nombrePelicula);
-        datos.escribir(pelicula,nombreArchivo,true);
+        datos.escribir(pelicula, nombreArchivo);
     }
 
     @Override
     public void listar(String nombreArchivo) {
+        datos.listar(nombreArchivo);
     }
 
     @Override

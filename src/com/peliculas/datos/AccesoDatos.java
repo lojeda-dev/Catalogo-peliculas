@@ -10,13 +10,13 @@ import java.util.List;
 public interface AccesoDatos {
     boolean existe(String nombreArchivo);
 
-    List<Pelicula> listar();
+    void listar(String nombreArchivo);
 
-    void escribir(Pelicula pelicula, String nombreArchivo, boolean anexar);
+    void escribir(Pelicula pelicula, String nombreArchivo);
 
     String buscar(String nombreArchivo, String buscar);
 
-    void crear(String nombreArchivo) throws FileNotFoundException;
+    void crear(String nombreArchivo);
 
     void borrar(String nombreArchivo);
 

@@ -31,15 +31,15 @@ public class MainPelicula {
             case 1:
                 System.out.println("Ingrese nombre del catalogo: ");
                 nombreArchivo = ent.nextLine();
-                System.out.println(nombreArchivo);
-                /*catalogo.iniciarArchivo(nombreArchivo);*/
+                catalogo.iniciarArchivo(nombreArchivo);
                 break;
             case 2:
                 System.out.println("Ingrese nombre de la pelicula a agregar: ");
                 nombrePelicula = ent.nextLine();
-                System.out.println(nombrePelicula);
-                /*catalogo.agregar(nombrePelicula,"peliculas.txt");*/
+                catalogo.agregar(nombrePelicula, "peliculas.txt");
                 break;
+            case 3:
+                catalogo.listar("peliculas.txt");
         }
     }
 }
