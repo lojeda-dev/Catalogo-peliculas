@@ -1,7 +1,5 @@
 package com.peliculas.dominio;
 
-import lombok.*;
-
 /*Esta clase representa los objetos pelicula utilizados en la aplicaion de catalogo peliculas*/
 
 
@@ -18,5 +16,9 @@ public class Pelicula {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    @Override
+    public String toString() {
+        return this.nombre;
     }
 }

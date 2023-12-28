@@ -1,8 +1,8 @@
 package com.peliculas.excepciones;
 
-public class AccesoDatosEx extends RuntimeException {
+public class AccesoDatosEx extends Exception {
 
-    public AccesoDatosEx() {
-        System.out.println("No se pudo crear el archivo.");
+    public AccesoDatosEx(String mensaje) {
+        super(mensaje);
     }
 }
