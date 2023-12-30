@@ -71,7 +71,7 @@ public class AccesoDatosImpl implements AccesoDatos {
                 String lectura = entrada.readLine();
                 int i = 1;
                 while (lectura != null) {
-                    if (lectura.equalsIgnoreCase(buscar) || buscar != null) {
+                    if (lectura.equalsIgnoreCase(buscar)) {
                         resultado = "Pelicula = " + lectura + ". ID = " + i;
                         break;
                     } else {
@@ -106,38 +106,12 @@ public class AccesoDatosImpl implements AccesoDatos {
     }
 
     @Override
-    public void borrar(String nombreArchivo, String nombrePelicula) throws AccesoDatosEx {
-        if (existe(nombreArchivo)) {
-            var archivo = new File(nombreArchivo);
-            try {
-                var salida = new PrintWriter(new FileWriter(archivo, false));
-                var entrada = new BufferedReader(new FileReader(archivo));
-                String lectura = entrada.readLine();
-                while (lectura != null) {
-                    if (lectura.equals(nombrePelicula)) {
-                        salida.println("");
-                        lectura = null;
-                    } else {
-                        lectura = entrada.readLine();
-                    }
-                }
-                salida.close();
-                entrada.close();
-            } catch (IOException e) {
-                throw new AccesoDatosEx("No se pudo acceder al archivo." + e.getMessage());
-            }
-        } else {
-            System.out.println("El archivo no existe.");
-        }
-    }
-
-    @Override
-    public void borrar(String nombreArchivo) throws AccesoDatosEx {
+    public void borrar(String nombreArchivo) {
         var archivo = new File(nombreArchivo);
-        if (archivo.exists()){
+        if (archivo.exists()) {
             archivo.delete();
             System.out.println("Se borro el archivo correctamente.");
-        }else {
+        } else {
             System.out.println("El archivo no existe.");
         }
     }

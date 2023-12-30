@@ -19,6 +19,5 @@ public interface AccesoDatos {
 
     void crear(String nombreArchivo) throws AccesoDatosEx;
 
-    void borrar(String nombreArchivo, String nombrePelicula) throws AccesoDatosEx;
     void borrar(String nombreArchivo) throws AccesoDatosEx;
 }
