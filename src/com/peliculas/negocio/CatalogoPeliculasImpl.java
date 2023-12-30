@@ -1,50 +1,72 @@
 package com.peliculas.negocio;
 
+import com.peliculas.datos.AccesoDatos;
 import com.peliculas.datos.AccesoDatosImpl;
 import com.peliculas.dominio.Pelicula;
 import com.peliculas.excepciones.AccesoDatosEx;
-import com.peliculas.excepciones.EscrituraDatosEx;
-import com.peliculas.excepciones.LecturaDatosEx;
-import lombok.NoArgsConstructor;
-
-import java.io.FileNotFoundException;
 
 /*Contiene las implementaciones de las operaciones necesarias de la aplicacion Catalogo Peliculas*/
 
-@NoArgsConstructor
+
 public class CatalogoPeliculasImpl implements CatalogoPeliculas {
-    AccesoDatosImpl datos = new AccesoDatosImpl();
+    private final AccesoDatos datos;
+
+    public CatalogoPeliculasImpl() {
+        this.datos = new AccesoDatosImpl();
+    }
 
     @Override
-    public void agregar(String nombrePelicula, String nombreArchivo, boolean anexar) throws EscrituraDatosEx {
+    public void agregarPelicula(String nombrePelicula) {
         Pelicula pelicula = new Pelicula(nombrePelicula);
-        datos.escribir(pelicula, nombreArchivo,anexar);
+        boolean anexar = false;
+        try {
+            anexar = datos.existe(NOMBRE_RECURSO);
+            datos.escribir(pelicula,NOMBRE_RECURSO,anexar);
+        } catch (AccesoDatosEx e) {
+            System.out.println("ERROR ACCESO A DATOS");
+            e.printStackTrace(System.out);
+        }
     }
 
     @Override
-    public void listar(String nombreArchivo) throws LecturaDatosEx {
-        datos.listar(nombreArchivo);
+    public void listarPeliculas() {
+        try {
+            var peliculas = this.datos.listar(NOMBRE_RECURSO);
+            for (var p: peliculas) {
+                System.out.println(p);
+            }
+        } catch (AccesoDatosEx e) {
+            System.out.println("ERROR ACCESO DATOS");
+            e.printStackTrace(System.out);
+        }
     }
 
     @Override
-    public void buscar(String nombreArchivo, String buscar) throws LecturaDatosEx {
-        datos.buscar(nombreArchivo, buscar);
+    public void buscarPelicula(String buscar) {
+        String resultado = null;
+        try {
+            resultado = this.datos.buscar(NOMBRE_RECURSO,buscar);
+
+        } catch (AccesoDatosEx e) {
+            System.out.println("ERROR ACCESO DATOS");
+            e.printStackTrace(System.out);
+        }
+        System.out.println(resultado);
+
     }
 
     @Override
-    public void iniciarArchivo(String nombreArchivo) throws AccesoDatosEx {
-        datos.crear(nombreArchivo);
+    public void iniciarCatalogo() {
+        try {
+            if (this.datos.existe(NOMBRE_RECURSO)){
+                datos.borrar(NOMBRE_RECURSO);
+                datos.crear(NOMBRE_RECURSO);
+            } else {
+                datos.crear(NOMBRE_RECURSO);
+            }
+        } catch (AccesoDatosEx e) {
+            System.out.println("ERROR AL INICIAR CATALOGO DE PELICULAS");
+            e.printStackTrace(System.out);
+        }
     }
-
-
-    @Override
-    public void borrar(String nombreArchivo, String nombrePelicula) throws AccesoDatosEx {
-        datos.borrar(nombreArchivo, nombrePelicula);
-    }
-
-    @Override
-    public void borrar(String nombreArchivo) throws AccesoDatosEx {
-        datos.borrar(nombreArchivo);
-    }
-
 }

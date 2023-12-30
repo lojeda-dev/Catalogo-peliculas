@@ -9,17 +9,13 @@ import com.peliculas.excepciones.LecturaDatosEx;
 import java.io.FileNotFoundException;
 
 public interface CatalogoPeliculas {
+    String NOMBRE_RECURSO = "peliculas.txt";
 
-    void agregar(String nombrePelicula, String nombreArchivo, boolean anexar) throws EscrituraDatosEx;
+    void agregarPelicula(String nombrePelicula);
 
-    void listar(String nombreArchivo) throws LecturaDatosEx;
+    void listarPeliculas();
 
-    void buscar(String nombreArchivo, String buscar) throws LecturaDatosEx;
+    void buscarPelicula(String buscar);
 
-    void iniciarArchivo(String nombreArchivo) throws AccesoDatosEx;
-
-    void borrar(String nombreArchivo, String nombrePelicula) throws AccesoDatosEx;
-    void borrar(String nombreArchivo) throws AccesoDatosEx;
-
-
+    void iniciarCatalogo();
 }
